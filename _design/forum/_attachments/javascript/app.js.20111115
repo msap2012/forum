@@ -1,0 +1,1055 @@
+(function($) {
+	var css = document.createElement('link');
+	css.rel = "stylesheet";
+	css.type = "text/css";
+	if (BrowserDetection.is_mobile) {
+		css.href = "http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css";
+	} else {
+		css.href = "http://hk4.msap.ws/peter/testing/css/pc.css";
+		css.href = "http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css";
+	}
+	var s = document.getElementsByTagName('link')[0];
+	s.parentNode.insertBefore(css, s);
+
+	DropBoxAPI = {
+		DROPBOX_API_KEY: 'f7nz7j5v40zqn9l',
+		DROPBOX_API_SECRET: '2kkmtbvo28pt4n2',
+		//DROPBOX_API_KEY:	'shn29ov9iupwl28',
+		//DROPBOX_API_SECRET: '7uzhk3xflb85pt2',
+
+		CHARS: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz",
+		url_prefix: 'https://api.dropbox.com/0',
+		auth_prefix: 'https://www.dropbox.com/0',
+		
+		redirect_auth: function(token, redirect) {
+			var rurl = DropBoxAPI.auth_prefix + '/oauth/authorize';
+			var params = {};
+			params.oauth_token = token;
+			params.oauth_callback = redirect;
+
+			rurl += '?' + OAuth.SignatureMethod.normalizeParameters(params);
+	
+			window.location.href = rurl;
+		},
+
+		generate_nouce: function(length) {
+			var chars = DropBoxAPI.CHARS;
+			var results = [];
+
+			for (var i = 0; i < length; ++i) {
+				var rnum = Math.floor(Math.random() * chars.length);
+				results.push(chars.substring(rnum, rnum+1));
+			}
+
+			return results.join('');
+		},
+
+		prepareRequest: function(data) {
+			var today = new Date(), now = today.getTime();
+
+			data = $.extend({}, data);
+			data.oauth_timestamp = Math.floor(now/1000);
+			data.oauth_signature_method = "HMAC-SHA1";
+			data.oauth_nonce = DropBoxAPI.generate_nouce(6);
+			data.oauth_version = '1.0';
+
+			return data;
+		},
+
+		access_token: function(key, secret, callback) {
+			var api_url = DropBoxAPI.url_prefix + '/oauth/access_token';
+			DropBoxAPI.call_api(api_url, key, secret, callback);
+		},
+
+		metadata: function(path, key, secret, callback) {
+			var api_url = DropBoxAPI.url_prefix + '/metadata/' + path;
+			DropBoxAPI.call_api(api_url, key, secret, callback);
+		},
+
+		info: function(key, secret, callback) {
+			var api_url = DropBoxAPI.url_prefix + '/account/info';
+			DropBoxAPI.call_api(api_url, key, secret, callback);
+		},
+
+		shares: function(path, key, secret, callback) {
+			var api_url = DropBoxAPI.url_prefix + '/shares/' + path;
+			DropBoxAPI.call_api(api_url, key, secret, callback);
+		},
+
+		call_api: function(api_url, key, secret, callback) {
+			var data = DropBoxAPI.prepareRequest({ oauth_consumer_key: DropBoxAPI.DROPBOX_API_KEY, oauth_token: key });
+			$.ajax({
+				cache: true,
+				url: api_url,
+				dataType: 'jsonp',
+				data: data,
+				success: callback,
+				beforeSend: function(jqXHR, settings) {
+					var uri = OAuth.SignatureMethod.parseUri(settings.url);
+					var q = uri.query;
+					var parameters = OAuth.getParameterMap(q);
+					var fixed_path = [];
+					$.each(uri.path.split('/'), function(i, p) {
+						fixed_path.push(OAuth.percentEncode(p));
+					});
+					var base_url = [uri.protocol, '://', uri.host, fixed_path.join('/')].join('');
+					var base = OAuth.percentEncode(settings.type.toUpperCase())
+						+'&'+ OAuth.percentEncode(OAuth.SignatureMethod.normalizeUrl(base_url))
+						+'&'+ OAuth.percentEncode(OAuth.SignatureMethod.normalizeParameters(parameters));
+					var sig = b64_hmac_sha1(secret, base);
+
+					settings.url = OAuth.addToURL(settings.url, { oauth_signature: sig });
+				}
+			});
+		},
+
+		request_token: function(callback) {
+			var api_url = DropBoxAPI.url_prefix + '/oauth/request_token';
+			//var data = DropBoxAPI.prepareRequest({ oauth_consumer_key: DropBoxAPI.DROPBOX_API_KEY });
+			var data = { oauth_consumer_key: DropBoxAPI.DROPBOX_API_KEY };
+			//$.getJSON(api_url, data, callback);
+			$.ajax({
+				cache: true,
+				url: api_url,
+				dataType: 'jsonp',
+				data: data,
+				success: callback/*,
+				beforeSend: function(jqXHR, settings) {
+					DropBoxAPI.signRequest(settings);
+				}*/
+			});
+		}
+	};
+}(jQuery));
+
+$(function() {
+	if (!BrowserDetection.is_mobile) {
+		var tmp = Locale.getTranslation('pc_page_frame', locale);
+		tmp = $.mustache(tmp, {}, {page_frame_content: '', page_frame_threads: ''});
+		$('#page_content').html(tmp);
+	}
+
+	var $db, loggedIn = true, username;					// Variables.
+	var checkLogin, loginDisplay, refreshForums, refreshThreads, app;	// Functions.
+	var currentForum = null;
+	var forumList = {};
+	var threadList = {};
+	var currentUser = null;
+	var tigger_share = false;
+	var previous_path = null;
+
+	//$.couch.urlPrefix = 'http://hk4.msap.ws:5984';
+	$db = $.couch.db('testing_forum');
+	username = 'Anonymous';
+
+	refreshForums = function(callback) {
+		$db.view('forum/forums', {
+			descending: true,
+			success: function(data) {
+				$.each(data.rows, function(idx, data_) {
+					if(!currentForum) currentForum = data_.id;
+					forumList[data_.id] = data_.value;
+				});
+				callback(data);
+			}
+		});
+	}
+
+	refreshThreads = function(callback) {
+		$db.view('forum/threads_by_forum', {
+			descending: true,
+			startkey: [currentForum],
+
+			endkey: [currentForum],
+			success: function(data) {
+				$.each(data.rows, function(idx, data_) {
+					threadList[data_.id] = data_.value;
+				});
+				callback(data);
+			}
+		});
+		
+		//$.getJSON('data/threads.json', callback);
+	};
+
+	checkUserSession__ = function(callback) {
+		if (currentUser !== null) {
+			username = currentUser.username;
+			callback(true);
+		} else {
+			callback(false);
+		}
+	};
+
+	loginDisplay = function(loggedIn_) {
+		var html;
+
+		if (loggedIn_) {
+			loggedIn = true;
+			html = Locale.getTranslation('logout_control.ms', locale);
+			$('#page_header .ui-header h1.ui-title').html(username);
+		} else {
+			username = 'Anonymous';
+			loggedIn = false;
+			html = Locale.getTranslation('login_control.ms', locale);
+			$('#page_header .ui-header h1.ui-title').html('Mobile Modern Forum');
+		}
+
+		$('#page_header .ui-user-nav .ui-btn-right.ui-controlgroup-horizontal').html(html);
+		$(document).trigger('forum-user-login-status', [loggedIn]);
+	};
+
+	prepareForumUserDoc = function(user_doc, new_password) {
+		var user_prefix = "forum.user:";
+		user_doc._id = user_doc._id || user_prefix + user_doc.username;
+
+		if (new_password) {
+			user_doc.salt = $.couch.newUUID();
+			user_doc.password_sha = hex_sha1(new_password + user_doc.salt);
+		}
+
+		return user_doc;
+	};
+
+	modern_forum = $.sammy('#page_frame', function() {
+		var tpl_alias = 'ms';
+		var forumApp = this;
+
+		(function() {
+			var showCurrentUsers = function(data) {
+				var template = Locale.getTranslation('current_users', locale);
+				var defaultAvatar = 'http://a1055.phobos.apple.com/us/r1000/118/Purple/f9/f5/bc/mzi.admjvooj.png';
+				
+				$('#page_footer').html($.mustache(template, {
+					'count': data.users.length,
+					'users': $.map(data.users, function(profile, index) {
+						return {
+							'id': profile._id,
+							'username': profile.data.username,
+							'avatar': ((profile.data.avatar != 'no' && profile.data.avatar != '') ? profile.data.avatar : defaultAvatar)
+						};
+					})
+				}));
+			};
+	
+			setInterval(function() {
+				$.ajax({
+					'url': 'http://192.168.0.30:1337/active/status',
+					'dataType': 'jsonp',
+					'success': function(data) {
+						if (data.success) {
+							showCurrentUsers(data);
+						}
+					}
+				});
+			}, 10000);
+
+			updateCurrentUsers = function() {
+				$.ajax({
+					'url': 'http://192.168.0.30:1337/active/status',
+					'dataType': 'jsonp',
+					'success': function(data) {
+						if (data.success) {
+							showCurrentUsers(data);
+						}
+					}
+				});
+			};
+	
+			reportUserStatus = function(action) {
+				currentUser = forumApp.session('current_user');
+				if (currentUser !== null) {
+					var query = 'id=' + encodeURIComponent(currentUser._id);
+					if (action == 'login') {
+						query = query + '&data=' + encodeURIComponent(JSON.stringify(currentUser));
+					}
+					$.ajax({
+						'url': 'http://192.168.0.30:1337/active/' + action + '?' + query,
+						'dataType': 'jsonp',
+						'success': function(data) {
+							if (data.success) {
+								showCurrentUsers(data);
+							}
+						}
+					});
+				}
+			};
+
+		})();
+
+		checkUserSession = function(callback) {
+			currentUser = forumApp.session('current_user');
+			if (currentUser !== null) {
+				username = currentUser.username;
+				callback(true);
+			} else {
+				callback(false);
+			}
+		};
+
+		saveUserSession = function(user_doc) {
+			forumApp.session('current_user', user_doc);
+		};
+
+		fetchUserProfile = function(user_key, callback) {
+			$db.view('forum/by_username', {
+				keys: user_key,
+				success: callback
+			});
+		};
+
+		this.use('Mustache', tpl_alias);
+		this.use('Storage');
+		this.use('Session');		
+
+		this.helpers({
+			get_trans: Locale.getTranslation,
+			add_trans: Locale.addTranslation,
+			tpl_subsitute: function(context, location_, data, partials) {
+				var template = context.get_trans(location_, locale);
+				return context.interpolate(template, data, tpl_alias, partials);
+			},
+			renderForPC: function(context, data, page_frame_primary, page_frame_secondary) {
+				page_frame_primary = page_frame_primary || '';
+				page_frame_secondary = page_frame_secondary || '';
+				partials = $.extend({}, data.partials, {
+					page_frame_content: page_frame_primary,
+					page_frame_threads: page_frame_secondary
+				});
+				data.partials = partials;
+				var template = context.get_trans('pc_page_frame', locale);
+				return context.interpolate(template, data, tpl_alias, partials);
+			}
+		});
+
+		checkUserSession(loginDisplay);
+
+		var store = new Sammy.Store({name: 'forum'});
+		var primaryFrame;
+		var secondaryFrame = this.$element('#page_content .ui-pc-page-frame .content-secondary');
+		if (BrowserDetection.is_mobile) {
+			primaryFrame = this.$element('#page_content');
+		} else {
+			primaryFrame = this.$element('#page_content .ui-pc-page-frame .content-primary');
+		
+			/*
+			forumApp.bind('load-thread-list', function(ev, params) {
+				refreshThreads(function(response) {
+					var data = {};
+					data.threads = response.rows;
+					if (data.threads.length > 0) {
+						data.threads[data.threads.length-1].listclass_ = 'ui-corner-bottom';
+					}
+					data.isLogged = true;
+
+					var tpl = Locale.getTranslation('threads.ms', locale);
+					var tmp = $.mustache(tpl, data);
+					secondaryFrame.html(tmp);
+				});
+			});
+			*/
+		}
+
+		this.before({only: { verb: 'get' }, expect: { path: ['#/', '#/view/forum'] }}, function(context) {
+			context.trigger('load-thread-list');
+		});
+
+		this.get('#/', function(context) {
+			context.redirect('#', 'view', 'forum');
+		});
+
+		this.get('#back', function(context) {
+			//history.go(-2);
+			context.redirect('#', 'view', 'forum');
+		});
+
+		this.get('#/login', function(context) {
+			var tmp = context.tpl_subsitute(context, 'login.ms');
+			primaryFrame.html(tmp);
+			//updateCurrentUsers();
+		});
+
+		this.get('#/register', function(context) {
+			var tmp = context.tpl_subsitute(context, 'register.ms');
+			primaryFrame.html(tmp);
+			//updateCurrentUsers();
+		});
+
+		this.get('#/logout', function(context) {
+			reportUserStatus('logout');
+			saveUserSession(null);	
+			checkUserSession(loginDisplay);
+			forumApp.session('request_token', null);
+			forumApp.session('request_token_secret', null);
+			forumApp.session('access_token', null);
+			forumApp.session('access_token_secret', null);
+	
+      context.redirect('#/');
+		});
+
+		this.before('#/new/thread', function(context) {
+			checkUserSession(loginDisplay);
+			if (!loggedIn) {
+				previous_path = context.path;
+				context.redirect('#', 'login');
+				return false;
+			}
+		});
+
+		this.get('#/new/thread', function(context) {
+			var tmp = context.tpl_subsitute(context, 'newthread.ms');
+			primaryFrame.html(tmp);
+			//updateCurrentUsers();
+
+			if (tigger_share) {
+				context.redirect('#', 'share_file', 'new');
+				tigger_share = false;
+			}
+		});
+
+		this.before('#/dropbox/auth', function(context) {
+			var rurl = [window.location.protocol, '//', window.location.host, window.location.pathname, '#/dropbox/auth_ready'].join('');
+
+			context.send(DropBoxAPI.request_token)
+				.then(function(data) {
+					var tmp =  OAuth.getParameterMap(data);
+					forumApp.session('request_token', tmp.oauth_token);
+					forumApp.session('request_token_secret', tmp.oauth_token_secret);
+					return tmp;
+				})
+				.then(function(request_token) {
+					DropBoxAPI.redirect_auth(request_token.oauth_token, rurl);
+				});
+
+			return false;
+		});
+
+		this.get('#/dropbox/auth', function(context) {
+		});
+
+		this.get('#/dropbox/auth_ready', function(context) {
+			var key = forumApp.session('request_token');
+			var secret = forumApp.session('request_token_secret');
+
+			context.send(DropBoxAPI.access_token, [key, secret])
+				.then(function(data) {
+					var tmp =  OAuth.getParameterMap(data);
+					forumApp.session('access_token', tmp.oauth_token);
+					forumApp.session('access_token_secret', tmp.oauth_token_secret);
+					return tmp;
+				})
+				.then(function(access_token) {
+					var tid = forumApp.session('back_thread');
+					if (tid) {
+						tigger_share = true;
+						forumApp.session('back_thread', null);
+						context.redirect('#', 'thread', tid);
+					} else {
+						context.redirect('#/dropbox/list');
+					}
+				});
+		});
+
+		createNodeChildren = function(data) {
+			var results = [];
+
+			$.each(data, function(idx, child) {
+				var n = {};
+				n.state = "";
+				n.data = child.path.substr(child.path.lastIndexOf('/')+1); //child.path.substr(1);
+				n.metadata = {
+					is_dir: child.is_dir,
+					icon: child.icon
+				};
+				n.attr = {};
+				n.attr.rel = "default";
+				n.attr['db-path'] = child.path;
+				n.attr['class'] = 'ui-db-style s_' + child.icon;
+
+				if (child.is_dir) {
+					n.state = "closed";
+					n.attr.rel = "folder";
+					n.children = [];
+				}
+
+				results.push(n);
+			});		
+
+			return results;
+		};
+
+		shareFile = function(obj) {
+			var key = forumApp.session('access_token');
+			var secret = DropBoxAPI.DROPBOX_API_SECRET+'&'+forumApp.session('access_token_secret');
+			var path  = $(obj).attr('db-path');
+			path = 'dropbox' + path;
+
+			DropBoxAPI.shares(path, key, secret, function(data) {
+				primaryFrame.append('<div><a target="_blank" href="'+data.url+'">Download '+$(obj).attr('db-path')+'</a></div>');
+			});
+		};
+
+		initDropBox = function(context, selector, shareCallback) {
+			var key = forumApp.session('access_token');
+			var secret = DropBoxAPI.DROPBOX_API_SECRET+'&'+forumApp.session('access_token_secret');
+
+			context.send(DropBoxAPI.metadata, ['dropbox', key, secret])
+				.then(function(data) {
+					var node  = createNodeChildren(data.contents);
+					$(selector).jstree({
+						plugins: ["themes", "json_data", "ui", "contextmenu"],
+						json_data: { data: node },
+						themes: {
+							theme: 'classic',
+							dots: false
+						},
+						contextmenu: {
+							items: function() {
+								return {
+									share: {
+										label: "Share",
+										action: shareCallback
+									}
+								};
+							}
+						}
+					})
+					.bind("open_node.jstree", function (event, data) {
+						var n = data.rslt.obj[0];
+						if ($(n).hasClass("ui-db-is-loaded") == false) {
+							$(n).addClass("ui-db-is-loaded");
+							var path = 'dropbox'+$(n).attr("db-path");
+							DropBoxAPI.metadata(path, key, secret, function(data) {
+								var c = createNodeChildren(data.contents);
+								var t = $.jstree._reference(n);
+								var tmp = t._parse_json(c, n);
+								if (tmp !== false) {
+									$(n).append(tmp);
+									t._get_children(n).each(function(idx, n2) {
+										$(selector).jstree('correct_state', n2);
+									});
+								}
+							});
+						}
+					})
+					.delegate("a", "click", function (event, data) {
+						event.preventDefault();
+						$(selector).jstree('show_contextmenu', $(event.target).parent('li'));
+					})
+					;
+				});
+		};
+
+		this.get('#/dropbox/list', function(context) {
+			var key = forumApp.session('access_token');
+			//var secret = forumApp.session('access_token_secret');
+			//var key = forumApp.session('request_token');
+			var secret = forumApp.session('request_token_secret')
+				+'&'+forumApp.session('access_token_secret');
+			secret = DropBoxAPI.DROPBOX_API_SECRET+'&'+forumApp.session('access_token_secret');
+			
+			var tmp = context.tpl_subsitute(context, 'dropbox.ms');
+			primaryFrame.html(tmp);
+			//updateCurrentUsers();
+			initDropBox(context, '#dropbox-browser', shareFile);
+		});
+
+		this.before(/#\/share_file\/[^\/]+$/, function(context) {
+			var key = forumApp.session('access_token');
+			var tid = this.params.id;
+
+			if (key) {
+			} else {
+				forumApp.session('back_thread', tid);
+				context.redirect('#/dropbox/auth');
+
+				return false;
+			}
+		});
+
+		shareInPost = function(obj) {
+			var key = forumApp.session('access_token');
+			var secret = DropBoxAPI.DROPBOX_API_SECRET+'&'+forumApp.session('access_token_secret');
+			var path  = $(obj).attr('db-path');
+			path = 'dropbox' + path;
+	
+			DropBoxAPI.shares(path, key, secret, function(data) {
+				var val = $('#postContent').val();
+				val += $(obj).attr('db-path') + ' - ' + data.url;
+				$('#postContent').val(val);
+				$('#postContent').focus();
+			});
+		}
+
+		this.get('#/share_file/:id', function(context) {
+			if ($('.ui-new-thread').length) {
+				var dropbox = context.tpl_subsitute(context, 'dropboxshare.ms');
+				$('.ui-new-thread').before(dropbox);
+				initDropBox(context, '#dropbox-browser', shareInPost);
+			} else if ($('.ui-forum-thread-posts').length) {
+				var dropbox = context.tpl_subsitute(context, 'dropboxshare.ms');
+				$('.ui-forum-thread-posts').after(dropbox);
+				initDropBox(context, '#dropbox-browser', shareInPost);
+			} else {
+				context.redirect('#', 'thread', this.params.id);
+			}
+		});
+
+		this.before(/#\/thread\/[^\/]+$/, function(context) {
+			var thread_id = this.params.id;
+
+			if (thread_id == "new") {
+				context.redirect('#', 'new', 'thread');
+				return false;
+			}
+		});
+
+		this.get('#/thread/:id', function(context) {
+			context.redirect('#', 'thread', this.params.id, '1');
+		});
+
+
+		this.get('#/thread/:id/:page', function(context) {
+			var thread_id = this.params.id;
+			var page = 1;
+			var pagesize = 3;
+			var lookahead = 2;
+			var startkey = [thread_id];
+			var endkey = [thread_id, {}];
+			var title = null;
+			var total = null;
+			var posts = null;
+
+			var fetchThreadTitle = function(callback) {
+				$db.openDoc(thread_id, null, {
+					success: function(resp) {
+						callback.call(null, resp);
+					}
+				});
+			};
+
+			var fetchPostCount = function(callback) {
+				$db.view('forum/posts_by_thread', {
+					startkey: startkey,
+					endkey: endkey,
+					group_level: 1,
+
+					success: function(resp) {
+						callback.call(null, resp);
+					}
+				});
+			};
+
+			var fetchPosts = function(callback) {
+				$db.view('forum/posts_by_thread', {
+					startkey: startkey,
+					endkey: endkey,
+					skip: (page - 1) * pagesize,
+					limit: pagesize,
+					reduce: false,
+
+					success: function(resp) {
+						callback.call(null, resp);
+					}
+				});
+			};
+
+			var success = function(title, total, posts) {
+				var is_admin_user = false;
+				var users_ = [];
+				var data = [];
+				var pages = [];
+				var postcount = total['rows'][0]['value'];
+				var pagecount = Math.ceil(postcount / pagesize);
+
+				if (currentUser && currentUser.role && $.inArray('_admin', currentUser.role) != -1) {
+					is_admin_user = true;
+				}
+
+				$.each(posts.rows, function(idx, post) {
+					if (idx < pagesize) {
+						data.push($.extend({}, {id: post.id }, post.value));
+						if (post.value.user_id) {
+							users_.push(post.value.user_id);
+						}
+					}
+				});
+
+				if (data.length > 0) {
+					data[data.length-1].listclass_ = 'ui-corner-bottom';
+				}
+
+				context.send(fetchUserProfile, [users_])
+					.then(function(posts) {
+						var userData = {};
+						$.each(posts.rows, function(idx, d_) {
+							//userData[d_.key] = d_.value;
+							var profile = d_.value;
+							if (profile.avatar) {
+								$('img[role-data="'+d_.key+'"]').attr('src', profile.avatar);
+							}
+						});
+					});
+
+				for (var i = Math.max(1, page - lookahead); i <= Math.min(pagecount, page + lookahead); i++) {
+					pages.push({'page': i, 'current': (i == page)});
+				}
+
+				var tplobj = {
+					thread_id: thread_id,
+					thread_name: title.title,
+					isadmin: is_admin_user,
+					posts: data,
+					first: (page > 1 ? 1 : 0),
+					prev: (page > 1 ? page - 1 : 0),
+					next: (page < pagecount ? page + 1 : 0),
+					last: (page < pagecount ? pagecount : 0),
+					pages: pages,
+					nl2br: function() {
+						return function(text, render) {
+							//return text.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br/>' + '$2');
+							return render(text).replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '<br/>' + '$2');
+						}
+					}
+				};
+
+				var template = context.get_trans('postsv3.ms', locale);
+				//var tmp = context.interpolate(template, {thread_name: 'Posts List', isadmin: is_admin_user, posts: data}, 'ms');
+				var tmp = context.interpolate(template, tplobj, 'ms');
+				var quickreply = '';
+				var dropbox = '';
+				
+				if (loggedIn) {
+					quickreply = context.tpl_subsitute(context, 'quickreply.ms', {thread_id: thread_id});
+					if (tigger_share) {
+						dropbox = context.tpl_subsitute(context, 'dropboxshare.ms');
+					}
+				}
+
+				primaryFrame.html(tmp);
+				primaryFrame.append(dropbox);
+				primaryFrame.append(quickreply);
+				//updateCurrentUsers();
+
+				if (tigger_share) {
+					initDropBox(context, '#dropbox-browser', shareInPost);
+					tigger_share = false;
+				}
+			};
+
+			fetchThreadTitle(function(resp) {
+				title = resp;
+				if (title !== null && total !== null && posts !== null) {
+					success(title, total, posts);
+				}
+			});
+	
+			if (this.params.page == 'last') {
+				fetchPostCount(function(resp1) {
+					page = Math.ceil(resp1['rows'][0]['value'] / pagesize);
+					total = resp1;
+					fetchPosts(function(resp2) {
+						posts = resp2;
+						if (title !== null && total !== null && posts !== null) {
+							success(title, total, posts);
+						}
+					});
+				});
+			} else {
+				if (this.params.page == 'first') {
+					page = 1;
+				} else {
+					page = parseInt(this.params.page);
+					if (isNaN(page)) {
+						context.redirect('#', 'thread', thread_id, '1');
+						return;
+					}
+				}
+
+				fetchPostCount(function(resp) {
+					total = resp;
+					if (title !== null && total !== null && posts !== null) {
+						success(title, total, posts);
+					}
+				});
+
+				fetchPosts(function(resp) {
+					posts = resp;
+					if (title !== null && total !== null && posts !== null) {
+						success(title, total, posts);
+					}
+				});
+			}
+		});
+	
+
+		this.get('#/view/forum', function(context) {
+			loadForums(context);
+		});
+
+		loadForums = function(context) {
+			refreshForums(function(response) {
+				var data = {};
+				data.forums = response.rows;
+
+				if (data.forums.length > 0) {
+          data.forums[data.forums.length-1].listclass_ = 'ui-corner-bottom';
+        }
+        data.isLogged = loggedIn;
+        data.isLogged = true; // Always show?
+
+				var template = context.get_trans('forums.ms', locale);
+				var tmp = context.interpolate(template, data, 'ms');
+
+				if (BrowserDetection.is_mobile) {
+					primaryFrame.html(tmp);
+				} else {
+					primaryFrame.empty();
+					secondaryFrame.html(tmp);
+				}
+				refreshThreads(function(response) {
+	        var data = {};
+  	      data.threads = response.rows;
+    	    if (data.threads.length > 0) {
+      	    data.threads[data.threads.length-1].listclass_ = 'ui-corner-bottom';
+        	}
+
+	        var template2 = context.get_trans('threads.ms', locale);
+  	      tmp2 = context.interpolate(template2, data, 'ms');
+					if (BrowserDetection.is_mobile) {
+						primaryFrame.append(tmp2);
+					} else {
+						secondaryFrame.append(tmp2);
+					}
+					
+				});
+
+			});
+		};
+
+
+/*
+		this.get('#/view/thread', function(context) {
+			refreshThreads(function(response) {
+				var data = {};
+				data.threads = response.rows;
+				if (data.threads.length > 0) {
+					data.threads[data.threads.length-1].listclass_ = 'ui-corner-bottom';
+				}
+				data.isLogged = loggedIn;
+				data.isLogged = true; // Always show?
+
+				var template = context.get_trans('threads.ms', locale);
+				var tmp = context.interpolate(template, data, 'ms');
+
+				if (BrowserDetection.is_mobile) {
+					//context.$element('#page_content').html(tmp);
+					primaryFrame.html(tmp);
+					//updateCurrentUsers();
+				} else {
+					//context.$element('#page_content .ui-pc-page-frame .content-secondary').html(tmp);
+					primaryFrame.empty();
+					secondaryFrame.html(tmp);
+					//updateCurrentUsers();
+				}
+			});
+		});
+*/
+
+		this.get('#/delete/:thread_id/:post_id/:rev', function(context) {
+			checkUserSession(loginDisplay);
+
+			if (currentUser && currentUser.role && $.inArray('_admin', currentUser.role) != -1) {
+			} else {
+				context.redirect('#', 'thread', this.params.thread_id);
+				return false;
+			}
+
+			var rev = this.params.rev;
+			var post_id = this.params.post_id;
+			var postDoc = { _id: post_id, _rev: rev };
+			var thread_id_ = this.params.thread_id;
+			$('#post-'+post_id+' a.ui-delete-post-btn').hide();
+
+			$db.removeDoc(postDoc, {
+				success: function() {
+					context.redirect('#', 'thread', thread_id_);
+				}, error: function() {
+					alert('Delete failure.');
+					context.redirect('#', 'thread', thread_id_);
+				}
+			});
+		});
+
+		this.put('#/post/login', function(context) {
+			var username_ = this.params.username;
+			var password_ = this.params.password;
+			currentUser = null;
+
+/*
+			context.send($db.view, ['forum/by_username'])
+				.then(function(data) {
+					if (data.rows.length > 0) {
+						var user_doc = data.rows[0].value;
+						var password_sha = hex_sha1(password_ + user_doc.salt);
+						if (password_sha == user_doc.password_sha) {
+							saveUserSession(user_doc);
+						}
+					}
+					checkUserSession(loginDisplay);
+					if (previous_path) {
+						var next = previous_path;
+						previous_path = null;
+						context.redirect(next);
+					} else {
+						context.redirect('#/');
+					}
+				});
+*/
+
+			$db.view('forum/by_username', {
+				key: username_,
+				success: function(data) {
+					if (data.rows.length > 0) {
+						var user_doc = data.rows[0].value;
+						var password_sha = hex_sha1(password_ + user_doc.salt);
+						if (password_sha == user_doc.password_sha) {
+							//currentUser = user_doc;
+							saveUserSession(user_doc);
+							reportUserStatus('login');
+						}
+					}
+					checkUserSession(loginDisplay);
+					if (previous_path) {
+						var next = previous_path;
+						previous_path = null;
+						context.redirect(next);
+					} else {
+						context.redirect('#/');
+					}
+				}	
+			});	
+
+		});
+
+		this.put('#/post/register', function(context) {
+			var userDoc;
+			var username_ = this.params.username;
+			var password_ = this.params.password;
+		
+			userDoc = {
+				type: 'user',
+				username: username_,
+				email: this.params.email,
+				avatar: this.params.avatar,
+				user_level: 'normal'
+			};
+			userDoc	= prepareForumUserDoc(userDoc, password_);
+
+			$db.saveDoc(userDoc, {
+				success: function(userData) {
+					var cUser = $.extend({}, userDoc, userData);
+					saveUserSession(cUser);
+					reportUserStatus('login');
+					checkUserSession(loginDisplay);
+				},
+				error: function() {
+					alert('Fail to create new user!');
+				}
+			});
+
+			/*
+			$.couch.signup(userDoc, password_, {
+				success: function(userData) {
+					checkUserSession(loginDisplay);
+				},
+				error: function() {
+					checkUserSession(loginDisplay);
+					alert('Fail to create new user!');
+				}
+			});
+			*/
+			context.redirect('#/');
+			// username = username_;
+			// context.redirect('#/');
+		});
+
+		this.put('#/post/reply', function (context) {
+			var postContent = this.params.postContent;
+			var currentThread = this.params.currentThread;
+			var replyDoc;
+			var today = new Date(), now = today.getTime();
+
+			replyDoc = {
+				type: 'post',
+				content: postContent,
+				thread_id: currentThread,
+				user_id: username,
+				datetime: now
+			};
+
+			$db.saveDoc(replyDoc, {
+				success: function(postData) {
+					context.redirect('#', 'thread', currentThread, 'last');
+				},
+				error: function() {
+					alert('Cannot save the post.');
+					context.redirect('#/');
+				}
+			});
+		});
+
+		this.put('#/post/thread', function(context) {
+
+			var threadTitle = this.params.threadTitle;
+			var postContent = this.params.postContent;
+			var threadDoc, postDoc;
+			var today = new Date(), now = today.getTime();
+
+			if (threadTitle.length && postContent.length) {
+				threadDoc = {
+					type: 'thread',
+					title: threadTitle,
+					datetime: now,
+					forum_id: null
+				};
+
+				// Save the thread doc, then make a post doc for it.
+				$db.saveDoc(threadDoc, {
+					success: function(threadData) {
+						postDoc = {
+							type: 'post',
+							content: postContent,
+							thread_id: threadData.id,
+							user_id: username,
+							datetime: now
+						};
+
+						$db.saveDoc(postDoc, {
+							success: function(postData) {
+								context.redirect('#', 'thread', threadData.id);
+							},
+
+							error: function() {
+								alert('Cannot save the post.');
+							}
+						});
+					},
+
+					error: function() {
+						alert('Cannot save the thread.');
+					}
+				});
+			} else {
+				alert('Title or content cannot be empty.');
+				return false;
+			}	
+		});
+
+		this.before(/#.+$/, function(context) {
+			reportUserStatus('ping');
+		});
+	});
+	
+	modern_forum.run('#/view/forum');
+});

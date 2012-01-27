@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html class="ui-mobile">
+<head>
+	<title>Mobile Modern Forum</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+	
+	<link rel="stylesheet" type="text/css" href="style/page.min.css"></script>
+	
+
+	<script type="text/javascript" src="external/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript" src="external/jquery.mustache.js"></script>
+	<script type="text/javascript" src="external/jquery.sammy.mustache.js"></script>
+	<script type="text/javascript" src="external/jquery-jstree/jquery.jstree.js"></script>
+	<script type="text/javascript" src="external/sammy/sammy.js"></script>
+	<script type="text/javascript" src="external/sammy/plugins/sammy.mustache.js"></script>
+	<script type="text/javascript" src="external/sammy/plugins/sammy.storage.js"></script>
+	<script type="text/javascript" src="javascript/cache/main.min.js"></script>
+	
+<script type="text/javascript">
+(function($) {
+	$(document).bind("mobileinit", function() {
+/*
+		$.mobile.hashListeningEnabled = false;
+		$.mobile.pushStateEnabled = false;
+		$.mobile.ajaxEnabled = false;
+*/
+	});
+})(jQuery);
+</script>
+<script type="text/javascript" src="http://hk4.msap.ws:5984/_utils/script/jquery.couch.js?0.11.0"></script>
+<script type="text/javascript" src="http://hk4.msap.ws:5984/_utils/script/sha1.js"></script>
+<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+<script type="text/javascript" src="javascript/app.template.js"></script>
+<script type="text/javascript" src="javascript/app.js"></script>
+
+	<script type="text/javascript">
+		var locale = 'en_US';
+	</script>
+</head>
+<body class="ui-mobile-viewport">
+<div id="page_frame" class="ui-page ui-page-active">
+	<div id="page_header">
+		<div class="ui-header ui-bar-a">
+			<a href="#/"><h1 class="ui-title">Mobile Modern Forum</h1></a>
+		</div>
+		<div class="ui-user-nav ui-bar-b ui-bar">
+			<div class="ui-btn-right ui-corner-all ui-controlgroup-horizontal">
+				<a href="#/login" class="ui-login-btn ui-btn ui-btn-inline ui-corner-left ui-btn-up-a">
+					<span class="ui-btn-inner ui-corner-left">
+						<span class="ui-btn-text">Login</span>
+					</span>
+				</a>
+				<a href="#/register" class="ui-register-btn ui-btn ui-btn-inline ui-corner-right ui-controlgroup-last ui-btn-up-a">
+					<span class="ui-btn-inner ui-corner-right ui-controlgroup-last">
+						<span class="ui-btn-text">Register</span>
+					</span>
+				</a>
+			</div>
+			<a href="#back" class="ui-back-btn ui-btn ui-corner-all ui-btn-up-a ui-btn-left ui-btn-icon-notext">
+				<span class="ui-btn-inner ui-corner-all">
+					<span class="ui-btn-text">Home</span>
+					<span class="ui-icon ui-icon-home ui-icon-shadow"></span>
+				</span>
+			</a>
+		</div>
+	</div>
+
+	<div id="page_content_frame">
+		<div id="page_content">
+		</div>
+	</div>
+
+	<div id="page_footer">
+	</div>
+</div>
+</body>
+</html>

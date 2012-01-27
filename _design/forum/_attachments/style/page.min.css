@@ -1,0 +1,1617 @@
+#page_header .ui-header .ui-title {
+}
+
+#page_header .ui-header a {
+	color: white;
+	text-decoration: none;
+}
+
+.ui-post-content {
+	position: relative;
+}
+
+.ui-post-content .ui-post-user div {
+	position: absolute;
+	left: 1;
+	width: 55px;
+	overflow: hidden;
+}
+
+.ui-post-content .ui-post-user div span {
+	display: block;
+}
+
+.ui-post-content .ui-post-user {
+	text-decoration: none;
+	color: black;
+}
+
+.ui-post-content .ui-post-text {
+	min-height: 80px;
+	padding-left: 60px;
+}
+
+.ui-user-nav {
+	position: relative;
+}
+
+.ui-user-nav .ui-btn-right {
+	float: right;
+}
+
+.ui-forum-thread-posts.ui-content .ui-listview-inset,
+.ui-content.ui-forum-threads .ui-listview-inset {
+	margin: 0;
+}
+
+.ui-register h2,
+.ui-login h2 {
+	margin: 0;
+}
+
+.ui-register .ui-field-contain,
+.ui-login .ui-field-contain {
+	margin: .5em 0;
+}
+
+
+#page_content .ui-content h2 {
+	margin: 0;
+}
+
+#page_content .ui-content .ui-field-contain {
+	margin: .5em 0;
+}
+
+.ui-pc-page-frame .content-secondary {
+	width: 30%;
+	float: left;
+}
+
+.ui-pc-page-frame .content-primary {
+	float: right;
+	width: 70%;
+}
+.ui-post-content.ui-body {
+	padding-right: 35px;
+}
+#dropbox-browser li.ui-db-style a ins {
+	/*background-image: url(https://www.dropbox.com/static/1320452596/images/sprites/sprites.png);*/
+	background-image: url(../images/sprites.png);
+}
+.ui-new-thread .ui-share-btn,
+.ui-forum-quick-reply .ui-share-btn {
+	display: inline-block;
+	position: absolute;
+}
+
+
+
+/*
+ * DropBox
+ */
+#dropbox-browser li.ui-db-style.s_folder_app > a > ins.jstree-icon
+{
+background-position:left -2079px
+}
+#dropbox-browser li.ui-db-style.s_page_paste > a > ins.jstree-icon
+{
+background-position:left -3596px
+}
+#dropbox-browser li.ui-db-style.s_transmit_gray > a > ins.jstree-icon
+{
+background-position:left -5603px
+}
+#dropbox-browser li.ui-db-style.s_email_go > a > ins.jstree-icon
+{
+background-position:left -1770px
+}
+#dropbox-browser li.ui-db-style.s_comment_add > a > ins.jstree-icon
+{
+background-position:left -1129px
+}
+#dropbox-browser li.ui-db-style.s_computer_add > a > ins.jstree-icon
+{
+background-position:left -1214px
+}
+#dropbox-browser li.ui-db-style.s_basket_remove > a > ins.jstree-icon
+{
+background-position:left -535px
+}
+#dropbox-browser li.ui-db-style.s_time_go > a > ins.jstree-icon
+{
+background-position:left -5535px
+}
+#dropbox-browser li.ui-db-style.s_big-dropdown-gray > a > ins.jstree-icon
+{
+background-position:left -569px
+}
+#dropbox-browser li.ui-db-style.s_folder_page > a > ins.jstree-icon
+{
+background-position:left -2249px
+}
+#dropbox-browser li.ui-db-style.s_page_white_sound_blue > a > ins.jstree-icon
+{
+background-position:left -4446px
+}
+#dropbox-browser li.ui-db-style.s_page_white_c > a > ins.jstree-icon
+{
+background-position:left -3732px
+}
+#dropbox-browser li.ui-db-style.s_folder_gray > a > ins.jstree-icon
+{
+background-position:left -2232px
+}
+#dropbox-browser li.ui-db-style.s_facebook > a > ins.jstree-icon
+{
+background-position:left -1925px
+}
+#dropbox-browser li.ui-db-style.s_link_delete_blue > a > ins.jstree-icon
+{
+background-position:left -3137px
+}
+#dropbox-browser li.ui-db-style.s_arrow_switch > a > ins.jstree-icon
+{
+background-position:left -442px
+}
+#dropbox-browser li.ui-db-style.s_email_delete > a > ins.jstree-icon
+{
+background-position:left -1736px
+}
+#dropbox-browser li.ui-db-style.s_application_double > a > ins.jstree-icon
+{
+background-position:left -170px
+}
+#dropbox-browser li.ui-db-style.s_picture_save_gray > a > ins.jstree-icon
+{
+background-position:left -4803px
+}
+#dropbox-browser li.ui-db-style.s_page_white_csharp > a > ins.jstree-icon
+{
+background-position:left -3885px
+}
+#dropbox-browser li.ui-db-style.s_gift_blue > a > ins.jstree-icon
+{
+background-position:left -2610px
+}
+#dropbox-browser li.ui-db-style.s_page_white_php_blue > a > ins.jstree-icon
+{
+background-position:left -4293px
+}
+#dropbox-browser li.ui-db-style.s_clock > a > ins.jstree-icon
+{
+background-position:left -1010px
+}
+#dropbox-browser li.ui-db-style.s_drive_magnify > a > ins.jstree-icon
+{
+background-position:left -1566px
+}
+#dropbox-browser li.ui-db-style.s_hide_del > a > ins.jstree-icon
+{
+background-position:left -2826px
+}
+#dropbox-browser li.ui-db-style.s_time_back > a > ins.jstree-icon
+{
+background-position:left -5450px
+}
+#dropbox-browser li.ui-db-style.s_page_white_actionscript_blue > a > ins.jstree-icon
+{
+background-position:left -3681px
+}
+#dropbox-browser li.ui-db-style.s_medal_gold_3 > a > ins.jstree-icon
+{
+background-position:left -3307px
+}
+#dropbox-browser li.ui-db-style.s_new > a > ins.jstree-icon
+{
+background-position:left -3375px
+}
+#dropbox-browser li.ui-db-style.s_folder_app_blue > a > ins.jstree-icon
+{
+background-position:left -2096px
+}
+#dropbox-browser li.ui-db-style.s_green_close > a > ins.jstree-icon
+{
+background-position:left -2673px
+}
+#dropbox-browser li.ui-db-style.s_control_pause_blue > a > ins.jstree-icon
+{
+background-position:left -1316px
+}
+#dropbox-browser li.ui-db-style.s_email_blue > a > ins.jstree-icon
+{
+background-position:left -1719px
+}
+#dropbox-browser li.ui-db-style.s_java_small > a > ins.jstree-icon
+{
+background-position:left -3001px
+}
+#dropbox-browser li.ui-db-style.s_user_go_blue > a > ins.jstree-icon
+{
+background-position:left -5841px
+}
+#dropbox-browser li.ui-db-style.s_page_white_code_blue > a > ins.jstree-icon
+{
+background-position:left -3783px
+}
+#dropbox-browser li.ui-db-style.s_page_white_vector > a > ins.jstree-icon
+{
+background-position:left -4565px
+}
+#dropbox-browser li.ui-db-style.s_python_small > a > ins.jstree-icon
+{
+background-position:left -4952px
+}
+#dropbox-browser li.ui-db-style.s_redx > a > ins.jstree-icon
+{
+background-position:left -4969px;width:15px;height:15px
+}
+#dropbox-browser li.ui-db-style.s_page_white_gear > a > ins.jstree-icon
+{
+background-position:left -4106px
+}
+#dropbox-browser li.ui-db-style.s_wand > a > ins.jstree-icon
+{
+background-position:left -5943px
+}
+#dropbox-browser li.ui-db-style.s_coins > a > ins.jstree-icon
+{
+background-position:left -1078px
+}
+#dropbox-browser li.ui-db-style.s_camera > a > ins.jstree-icon
+{
+background-position:left -858px
+}
+#dropbox-browser li.ui-db-style.s_time_delete > a > ins.jstree-icon
+{
+background-position:left -5501px
+}
+#dropbox-browser li.ui-db-style.s_iphone > a > ins.jstree-icon
+{
+background-position:left -2962px;width:14px;height:21px
+}
+#dropbox-browser li.ui-db-style.s_world_link_blue > a > ins.jstree-icon
+{
+background-position:left -6147px
+}
+#dropbox-browser li.ui-db-style.s_folder_blue > a > ins.jstree-icon
+{
+background-position:left -2113px
+}
+#dropbox-browser li.ui-db-style.s_pencil > a > ins.jstree-icon
+{
+background-position:left -4667px
+}
+#dropbox-browser li.ui-db-style.s_picture_save > a > ins.jstree-icon
+{
+background-position:left -4786px
+}
+#dropbox-browser li.ui-db-style.s_delete_blue > a > ins.jstree-icon
+{
+background-position:left -1401px
+}
+#dropbox-browser li.ui-db-style.s_link_delete > a > ins.jstree-icon
+{
+background-position:left -3120px
+}
+#dropbox-browser li.ui-db-style.s_phone > a > ins.jstree-icon
+{
+background-position:left -4684px
+}
+#dropbox-browser li.ui-db-style.s_user_suit_blue > a > ins.jstree-icon
+{
+background-position:left -5892px
+}
+#dropbox-browser li.ui-db-style.s_application_edit > a > ins.jstree-icon
+{
+background-position:left -221px
+}
+#dropbox-browser li.ui-db-style.s_folder_photos_blue > a > ins.jstree-icon
+{
+background-position:left -2300px
+}
+#dropbox-browser li.ui-db-style.s_link_break > a > ins.jstree-icon
+{
+background-position:left -3086px
+}
+#dropbox-browser li.ui-db-style.s_star_blue_on > a > ins.jstree-icon
+{
+background-position:left -5262px;width:11px;height:11px
+}
+#dropbox-browser li.ui-db-style.s_weather_clouds_blue > a > ins.jstree-icon
+{
+background-position:left -5994px
+}
+#dropbox-browser li.ui-db-style.s_package_go > a > ins.jstree-icon
+{
+background-position:left -3528px
+}
+#dropbox-browser li.ui-db-style.s_purge > a > ins.jstree-icon
+{
+background-position:left -4918px
+}
+#dropbox-browser li.ui-db-style.s_sort-uptick-off > a > ins.jstree-icon
+{
+background-position:left -5137px;width:11px;height:10px
+}
+#dropbox-browser li.ui-db-style.s_comment_add_blue > a > ins.jstree-icon
+{
+background-position:left -1146px
+}
+#dropbox-browser li.ui-db-style.s_emoticon_smile > a > ins.jstree-icon
+{
+background-position:left -1821px
+}
+#dropbox-browser li.ui-db-style.s_twitter_blue > a > ins.jstree-icon
+{
+background-position:left -5654px
+}
+#dropbox-browser li.ui-db-style.s_heart > a > ins.jstree-icon
+{
+background-position:left -2775px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_delete > a > ins.jstree-icon
+{
+background-position:left -2470px
+}
+#dropbox-browser li.ui-db-style.s_page_white_stack > a > ins.jstree-icon
+{
+background-position:left -4463px
+}
+#dropbox-browser li.ui-db-style.s_big-dropdown > a > ins.jstree-icon
+{
+background-position:left -586px
+}
+#dropbox-browser li.ui-db-style.s_lock > a > ins.jstree-icon
+{
+background-position:left -3171px
+}
+#dropbox-browser li.ui-db-style.s_bullet_toggle_plus > a > ins.jstree-icon
+{
+background-position:left -790px
+}
+#dropbox-browser li.ui-db-style.s_calendar_view_month > a > ins.jstree-icon
+{
+background-position:left -841px
+}
+#dropbox-browser li.ui-db-style.s_table_multiple > a > ins.jstree-icon
+{
+background-position:left -5356px
+}
+#dropbox-browser li.ui-db-style.s_chart_bar_blue > a > ins.jstree-icon
+{
+background-position:left -943px
+}
+#dropbox-browser li.ui-db-style.s_page_white_paint > a > ins.jstree-icon
+{
+background-position:left -4242px
+}
+#dropbox-browser li.ui-db-style.s_white_pause > a > ins.jstree-icon
+{
+background-position:left -6028px
+}
+#dropbox-browser li.ui-db-style.s_hide_del_blue > a > ins.jstree-icon
+{
+background-position:left -2843px
+}
+#dropbox-browser li.ui-db-style.s_comment_blue > a > ins.jstree-icon
+{
+background-position:left -1163px
+}
+#dropbox-browser li.ui-db-style.s_house_go_blue > a > ins.jstree-icon
+{
+background-position:left -2911px
+}
+#dropbox-browser li.ui-db-style.s_folder_edit > a > ins.jstree-icon
+{
+background-position:left -2164px
+}
+#dropbox-browser li.ui-db-style.s_events_bubble_tail > a > ins.jstree-icon
+{
+background-position:left -1902px;width:4px;height:5px
+}
+#dropbox-browser li.ui-db-style.s_page_white_put > a > ins.jstree-icon
+{
+background-position:left -4378px
+}
+#dropbox-browser li.ui-db-style.s_page_white_paint_blue > a > ins.jstree-icon
+{
+background-position:left -4259px
+}
+#dropbox-browser li.ui-db-style.s_information > a > ins.jstree-icon
+{
+background-position:left -2928px
+}
+#dropbox-browser li.ui-db-style.s_aol > a > ins.jstree-icon
+{
+background-position:left -85px
+}
+#dropbox-browser li.ui-db-style.s_mac > a > ins.jstree-icon
+{
+background-position:left -3222px
+}
+#dropbox-browser li.ui-db-style.s_page_white_compressed > a > ins.jstree-icon
+{
+background-position:left -3800px
+}
+#dropbox-browser li.ui-db-style.s_link_break_blue > a > ins.jstree-icon
+{
+background-position:left -3103px
+}
+#dropbox-browser li.ui-db-style.s_cog_blue > a > ins.jstree-icon
+{
+background-position:left -1061px
+}
+#dropbox-browser li.ui-db-style.s_world_link > a > ins.jstree-icon
+{
+background-position:left -6130px
+}
+#dropbox-browser li.ui-db-style.s_page_white_visualstudio > a > ins.jstree-icon
+{
+background-position:left -4582px
+}
+#dropbox-browser li.ui-db-style.s_wrench > a > ins.jstree-icon
+{
+background-position:left -6164px
+}
+#dropbox-browser li.ui-db-style.s_page_white_powerpoint_blue > a > ins.jstree-icon
+{
+background-position:left -4361px
+}
+#dropbox-browser li.ui-db-style.s_sort-downtick-off > a > ins.jstree-icon
+{
+background-position:left -5115px;width:11px;height:10px
+}
+#dropbox-browser li.ui-db-style.s_application_add > a > ins.jstree-icon
+{
+background-position:left -102px
+}
+#dropbox-browser li.ui-db-style.s_checkbox > a > ins.jstree-icon
+{
+background-position:left -976px
+}
+#dropbox-browser li.ui-db-style.s_help > a > ins.jstree-icon
+{
+background-position:left -2792px
+}
+#dropbox-browser li.ui-db-style.s_time_go_blue > a > ins.jstree-icon
+{
+background-position:left -5552px
+}
+#dropbox-browser li.ui-db-style.s_bullet_toggle_minus > a > ins.jstree-icon
+{
+background-position:left -773px
+}
+#dropbox-browser li.ui-db-style.s_page_white_delete_blue > a > ins.jstree-icon
+{
+background-position:left -3936px
+}
+#dropbox-browser li.ui-db-style.s_page_white_delete > a > ins.jstree-icon
+{
+background-position:left -3919px
+}
+#dropbox-browser li.ui-db-style.s_group > a > ins.jstree-icon
+{
+background-position:left -2690px
+}
+#dropbox-browser li.ui-db-style.s_money_blue > a > ins.jstree-icon
+{
+background-position:left -3358px
+}
+#dropbox-browser li.ui-db-style.s_checkbox_checked > a > ins.jstree-icon
+{
+background-position:left -993px
+}
+#dropbox-browser li.ui-db-style.s_camera_blue > a > ins.jstree-icon
+{
+background-position:left -875px
+}
+#dropbox-browser li.ui-db-style.s_bullet_minus > a > ins.jstree-icon
+{
+background-position:left -739px
+}
+#dropbox-browser li.ui-db-style.s_thick_x > a > ins.jstree-icon
+{
+background-position:left -5407px;width:8px;height:8px
+}
+#dropbox-browser li.ui-db-style.s_application_go > a > ins.jstree-icon
+{
+background-position:left -255px
+}
+#dropbox-browser li.ui-db-style.s_home_blue > a > ins.jstree-icon
+{
+background-position:left -2877px
+}
+#dropbox-browser li.ui-db-style.s_mac_black > a > ins.jstree-icon
+{
+background-position:left -3239px
+}
+#dropbox-browser li.ui-db-style.s_creditcards > a > ins.jstree-icon
+{
+background-position:left -1350px
+}
+#dropbox-browser li.ui-db-style.s_user_add_blue > a > ins.jstree-icon
+{
+background-position:left -5705px
+}
+#dropbox-browser li.ui-db-style.s_page_white_word > a > ins.jstree-icon
+{
+background-position:left -4616px
+}
+#dropbox-browser li.ui-db-style.s_user_suit_minus > a > ins.jstree-icon
+{
+background-position:left -5909px
+}
+#dropbox-browser li.ui-db-style.s_application_delete_blue > a > ins.jstree-icon
+{
+background-position:left -153px
+}
+#dropbox-browser li.ui-db-style.s_lock_blue > a > ins.jstree-icon
+{
+background-position:left -3188px
+}
+#dropbox-browser li.ui-db-style.s_page_white_put_blue > a > ins.jstree-icon
+{
+background-position:left -4395px
+}
+#dropbox-browser li.ui-db-style.s_package_delete_blue > a > ins.jstree-icon
+{
+background-position:left -3494px
+}
+#dropbox-browser li.ui-db-style.s_book_open > a > ins.jstree-icon
+{
+background-position:left -671px
+}
+#dropbox-browser li.ui-db-style.s_page_white_picture_blue > a > ins.jstree-icon
+{
+background-position:left -4327px
+}
+#dropbox-browser li.ui-db-style.s_exclamation > a > ins.jstree-icon
+{
+background-position:left -1908px
+}
+#dropbox-browser li.ui-db-style.s_white_play > a > ins.jstree-icon
+{
+background-position:left -6045px
+}
+#dropbox-browser li.ui-db-style.s_star_blue_on_big > a > ins.jstree-icon
+{
+background-position:left -5274px;width:14px;height:13px
+}
+#dropbox-browser li.ui-db-style.s_application_down > a > ins.jstree-icon
+{
+background-position:left -204px
+}
+#dropbox-browser li.ui-db-style.s_page_white_actionscript > a > ins.jstree-icon
+{
+background-position:left -3664px
+}
+#dropbox-browser li.ui-db-style.s_weather_clouds > a > ins.jstree-icon
+{
+background-position:left -5977px
+}
+#dropbox-browser li.ui-db-style.s_user_add > a > ins.jstree-icon
+{
+background-position:left -5688px
+}
+#dropbox-browser li.ui-db-style.s_user_suit_minus_blue > a > ins.jstree-icon
+{
+background-position:left -5926px
+}
+#dropbox-browser li.ui-db-style.s_group_add_blue > a > ins.jstree-icon
+{
+background-position:left -2724px
+}
+#dropbox-browser li.ui-db-style.s_emoticon_unhappy > a > ins.jstree-icon
+{
+background-position:left -1838px
+}
+#dropbox-browser li.ui-db-style.s_feed > a > ins.jstree-icon
+{
+background-position:left -1942px
+}
+#dropbox-browser li.ui-db-style.s_gray_logo > a > ins.jstree-icon
+{
+background-position:left -2644px;width:20px;height:20px
+}
+#dropbox-browser li.ui-db-style.s_page_white_dvd > a > ins.jstree-icon
+{
+background-position:left -3953px
+}
+#dropbox-browser li.ui-db-style.s_email_delete_blue > a > ins.jstree-icon
+{
+background-position:left -1753px
+}
+#dropbox-browser li.ui-db-style.s_delete_gray > a > ins.jstree-icon
+{
+background-position:left -1418px
+}
+#dropbox-browser li.ui-db-style.s_page_white_sound > a > ins.jstree-icon
+{
+background-position:left -4429px
+}
+#dropbox-browser li.ui-db-style.s_coins_add > a > ins.jstree-icon
+{
+background-position:left -1095px
+}
+#dropbox-browser li.ui-db-style.s_page_white_visualstudio_blue > a > ins.jstree-icon
+{
+background-position:left -4599px
+}
+#dropbox-browser li.ui-db-style.s_page_white_compressed_blue > a > ins.jstree-icon
+{
+background-position:left -3817px
+}
+#dropbox-browser li.ui-db-style.s_report_blue > a > ins.jstree-icon
+{
+background-position:left -5002px
+}
+#dropbox-browser li.ui-db-style.s_page_white_stack_blue > a > ins.jstree-icon
+{
+background-position:left -4480px
+}
+#dropbox-browser li.ui-db-style.s_accept > a > ins.jstree-icon
+{
+background-position:left 0
+}
+#dropbox-browser li.ui-db-style.s_magnifier_zoom_in_blue > a > ins.jstree-icon
+{
+background-position:left -3290px
+}
+#dropbox-browser li.ui-db-style.s_star_blue > a > ins.jstree-icon
+{
+background-position:left -5193px
+}
+#dropbox-browser li.ui-db-style.s_page_white_edit_blue > a > ins.jstree-icon
+{
+background-position:left -4004px
+}
+#dropbox-browser li.ui-db-style.s_sync > a > ins.jstree-icon
+{
+background-position:left -5305px
+}
+#dropbox-browser li.ui-db-style.s_filter_down_blue > a > ins.jstree-icon
+{
+background-position:left -1993px
+}
+#dropbox-browser li.ui-db-style.s_digg > a > ins.jstree-icon
+{
+background-position:left -1435px
+}
+#dropbox-browser li.ui-db-style.s_page_white_text_width > a > ins.jstree-icon
+{
+background-position:left -4531px
+}
+#dropbox-browser li.ui-db-style.s_house_go > a > ins.jstree-icon
+{
+background-position:left -2894px
+}
+#dropbox-browser li.ui-db-style.s_page_white_excel > a > ins.jstree-icon
+{
+background-position:left -4021px
+}
+#dropbox-browser li.ui-db-style.s_page_white_flash > a > ins.jstree-icon
+{
+background-position:left -4072px
+}
+#dropbox-browser li.ui-db-style.s_application_delete > a > ins.jstree-icon
+{
+background-position:left -136px
+}
+#dropbox-browser li.ui-db-style.s_flame > a > ins.jstree-icon
+{
+background-position:left -2010px;width:17px;height:17px
+}
+#dropbox-browser li.ui-db-style.s_email_open_blue > a > ins.jstree-icon
+{
+background-position:left -1804px
+}
+#dropbox-browser li.ui-db-style.s_minus > a > ins.jstree-icon
+{
+background-position:left -3324px
+}
+#dropbox-browser li.ui-db-style.s_add_gray > a > ins.jstree-icon
+{
+background-position:left -51px
+}
+#dropbox-browser li.ui-db-style.s_computer_go > a > ins.jstree-icon
+{
+background-position:left -1282px
+}
+#dropbox-browser li.ui-db-style.s_user_comment > a > ins.jstree-icon
+{
+background-position:left -5722px
+}
+#dropbox-browser li.ui-db-style.s_user_edit > a > ins.jstree-icon
+{
+background-position:left -5790px
+}
+#dropbox-browser li.ui-db-style.s_star_blue_half_big > a > ins.jstree-icon
+{
+background-position:left -5222px;width:14px;height:13px
+}
+#dropbox-browser li.ui-db-style.s_folder_page_blue > a > ins.jstree-icon
+{
+background-position:left -2266px
+}
+#dropbox-browser li.ui-db-style.s_folder_public > a > ins.jstree-icon
+{
+background-position:left -2334px
+}
+#dropbox-browser li.ui-db-style.s_page_white_cup > a > ins.jstree-icon
+{
+background-position:left -3902px
+}
+#dropbox-browser li.ui-db-style.s_application_pencil > a > ins.jstree-icon
+{
+background-position:left -306px
+}
+#dropbox-browser li.ui-db-style.s_dropbox_arrow_down > a > ins.jstree-icon
+{
+background-position:left -1600px
+}
+#dropbox-browser li.ui-db-style.s_transmit > a > ins.jstree-icon
+{
+background-position:left -5569px
+}
+#dropbox-browser li.ui-db-style.s_page_white_picture > a > ins.jstree-icon
+{
+background-position:left -4310px
+}
+#dropbox-browser li.ui-db-style.s_world_grey > a > ins.jstree-icon
+{
+background-position:left -6113px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_blue > a > ins.jstree-icon
+{
+background-position:left -2453px
+}
+#dropbox-browser li.ui-db-style.s_play > a > ins.jstree-icon
+{
+background-position:left -4871px;width:7px;height:12px
+}
+#dropbox-browser li.ui-db-style.s_page_white_get > a > ins.jstree-icon
+{
+background-position:left -4140px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_gray > a > ins.jstree-icon
+{
+background-position:left -2504px
+}
+#dropbox-browser li.ui-db-style.s_email_add_blue > a > ins.jstree-icon
+{
+background-position:left -1702px
+}
+#dropbox-browser li.ui-db-style.s_windows > a > ins.jstree-icon
+{
+background-position:left -6062px
+}
+#dropbox-browser li.ui-db-style.s_page_white > a > ins.jstree-icon
+{
+background-position:left -3613px
+}
+#dropbox-browser li.ui-db-style.s_link_blue > a > ins.jstree-icon
+{
+background-position:left -3069px
+}
+#dropbox-browser li.ui-db-style.s_package_edit > a > ins.jstree-icon
+{
+background-position:left -3511px
+}
+#dropbox-browser li.ui-db-style.s_picture_blue > a > ins.jstree-icon
+{
+background-position:left -4769px
+}
+#dropbox-browser li.ui-db-style.s_bricks_blue > a > ins.jstree-icon
+{
+background-position:left -705px
+}
+#dropbox-browser li.ui-db-style.s_bomb > a > ins.jstree-icon
+{
+background-position:left -637px
+}
+#dropbox-browser li.ui-db-style.s_weather_clouds_white > a > ins.jstree-icon
+{
+background-position:left -6011px
+}
+#dropbox-browser li.ui-db-style.s_android_small > a > ins.jstree-icon
+{
+background-position:left -68px
+}
+#dropbox-browser li.ui-db-style.s_application_double_blue > a > ins.jstree-icon
+{
+background-position:left -187px
+}
+#dropbox-browser li.ui-db-style.s_star_grey > a > ins.jstree-icon
+{
+background-position:left -5288px
+}
+#dropbox-browser li.ui-db-style.s_layout > a > ins.jstree-icon
+{
+background-position:left -3035px
+}
+#dropbox-browser li.ui-db-style.s_folder_star > a > ins.jstree-icon
+{
+background-position:left -2368px
+}
+#dropbox-browser li.ui-db-style.s_photo > a > ins.jstree-icon
+{
+background-position:left -4701px
+}
+#dropbox-browser li.ui-db-style.s_folder > a > ins.jstree-icon
+{
+background-position:left -2028px
+}
+#dropbox-browser li.ui-db-style.s_page_white_magnify > a > ins.jstree-icon
+{
+background-position:left -4208px
+}
+#dropbox-browser li.ui-db-style.s_drive_delete > a > ins.jstree-icon
+{
+background-position:left -1549px
+}
+#dropbox-browser li.ui-db-style.s_half_star > a > ins.jstree-icon
+{
+background-position:left -2758px;width:9px;height:16px
+}
+#dropbox-browser li.ui-db-style.s_application_link > a > ins.jstree-icon
+{
+background-position:left -289px
+}
+#dropbox-browser li.ui-db-style.s_sort-uptick-on > a > ins.jstree-icon
+{
+background-position:left -5148px;width:11px;height:10px
+}
+#dropbox-browser li.ui-db-style.s_folder_go > a > ins.jstree-icon
+{
+background-position:left -2198px
+}
+#dropbox-browser li.ui-db-style.s_report > a > ins.jstree-icon
+{
+background-position:left -4985px
+}
+#dropbox-browser li.ui-db-style.s_arrowleft > a > ins.jstree-icon
+{
+background-position:left -493px;width:12px;height:12px
+}
+#dropbox-browser li.ui-db-style.s_page_white_go > a > ins.jstree-icon
+{
+background-position:left -4174px
+}
+#dropbox-browser li.ui-db-style.s_application_go_blue > a > ins.jstree-icon
+{
+background-position:left -272px
+}
+#dropbox-browser li.ui-db-style.s_x > a > ins.jstree-icon
+{
+background-position:left -6198px;width:8px;height:8px
+}
+#dropbox-browser li.ui-db-style.s_page_white_gear_blue > a > ins.jstree-icon
+{
+background-position:left -4123px
+}
+#dropbox-browser li.ui-db-style.s_page_white_word_blue > a > ins.jstree-icon
+{
+background-position:left -4633px
+}
+#dropbox-browser li.ui-db-style.s_bullet_plus > a > ins.jstree-icon
+{
+background-position:left -756px
+}
+#dropbox-browser li.ui-db-style.s_transmit_blue > a > ins.jstree-icon
+{
+background-position:left -5586px
+}
+#dropbox-browser li.ui-db-style.s_computer > a > ins.jstree-icon
+{
+background-position:left -1197px
+}
+#dropbox-browser li.ui-db-style.s_dropdown_arrow_small2 > a > ins.jstree-icon
+{
+background-position:left -1651px
+}
+#dropbox-browser li.ui-db-style.s_close > a > ins.jstree-icon
+{
+background-position:left -1027px
+}
+#dropbox-browser li.ui-db-style.s_gmail > a > ins.jstree-icon
+{
+background-position:left -2627px
+}
+#dropbox-browser li.ui-db-style.s_world_blue > a > ins.jstree-icon
+{
+background-position:left -6096px
+}
+#dropbox-browser li.ui-db-style.s_pictures > a > ins.jstree-icon
+{
+background-position:left -4820px
+}
+#dropbox-browser li.ui-db-style.s_page_white_flash_blue > a > ins.jstree-icon
+{
+background-position:left -4089px
+}
+#dropbox-browser li.ui-db-style.s_arrow_turn_left > a > ins.jstree-icon
+{
+background-position:left -459px
+}
+#dropbox-browser li.ui-db-style.s_user_suit > a > ins.jstree-icon
+{
+background-position:left -5875px
+}
+#dropbox-browser li.ui-db-style.s_page_white_excel_blue > a > ins.jstree-icon
+{
+background-position:left -4038px
+}
+#dropbox-browser li.ui-db-style.s_arrow_refresh_blue > a > ins.jstree-icon
+{
+background-position:left -408px
+}
+#dropbox-browser li.ui-db-style.s_email > a > ins.jstree-icon
+{
+background-position:left -1668px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_add_blue > a > ins.jstree-icon
+{
+background-position:left -2436px
+}
+#dropbox-browser li.ui-db-style.s_dropdown_arrow_small > a > ins.jstree-icon
+{
+background-position:left -1634px
+}
+#dropbox-browser li.ui-db-style.s_page_white_powerpoint > a > ins.jstree-icon
+{
+background-position:left -4344px
+}
+#dropbox-browser li.ui-db-style.s_table_edit > a > ins.jstree-icon
+{
+background-position:left -5339px
+}
+#dropbox-browser li.ui-db-style.s_folder_photos > a > ins.jstree-icon
+{
+background-position:left -2283px
+}
+#dropbox-browser li.ui-db-style.s_page_white_tux > a > ins.jstree-icon
+{
+background-position:left -4548px
+}
+#dropbox-browser li.ui-db-style.s_pictures_blue > a > ins.jstree-icon
+{
+background-position:left -4837px
+}
+#dropbox-browser li.ui-db-style.s_key > a > ins.jstree-icon
+{
+background-position:left -3018px
+}
+#dropbox-browser li.ui-db-style.s_arrow_refresh_small > a > ins.jstree-icon
+{
+background-position:left -425px
+}
+#dropbox-browser li.ui-db-style.s_star_blue_off_big > a > ins.jstree-icon
+{
+background-position:left -5248px;width:14px;height:13px
+}
+#dropbox-browser li.ui-db-style.s_plugin > a > ins.jstree-icon
+{
+background-position:left -4884px
+}
+#dropbox-browser li.ui-db-style.s_text_align_justify > a > ins.jstree-icon
+{
+background-position:left -5390px
+}
+#dropbox-browser li.ui-db-style.s_page_white_copy > a > ins.jstree-icon
+{
+background-position:left -3834px
+}
+#dropbox-browser li.ui-db-style.s_cog > a > ins.jstree-icon
+{
+background-position:left -1044px
+}
+#dropbox-browser li.ui-db-style.s_page_white_get_blue > a > ins.jstree-icon
+{
+background-position:left -4157px
+}
+#dropbox-browser li.ui-db-style.s_comment > a > ins.jstree-icon
+{
+background-position:left -1112px
+}
+#dropbox-browser li.ui-db-style.s_bricks > a > ins.jstree-icon
+{
+background-position:left -688px
+}
+#dropbox-browser li.ui-db-style.s_application_add_blue > a > ins.jstree-icon
+{
+background-position:left -119px
+}
+#dropbox-browser li.ui-db-style.s_page_white_text_blue > a > ins.jstree-icon
+{
+background-position:left -4514px
+}
+#dropbox-browser li.ui-db-style.s_linux > a > ins.jstree-icon
+{
+background-position:left -3154px
+}
+#dropbox-browser li.ui-db-style.s_cancel > a > ins.jstree-icon
+{
+background-position:left -892px
+}
+#dropbox-browser li.ui-db-style.s_table > a > ins.jstree-icon
+{
+background-position:left -5322px
+}
+#dropbox-browser li.ui-db-style.s_package_blue > a > ins.jstree-icon
+{
+background-position:left -3460px
+}
+#dropbox-browser li.ui-db-style.s_page_white_text > a > ins.jstree-icon
+{
+background-position:left -4497px
+}
+#dropbox-browser li.ui-db-style.s_folder_add > a > ins.jstree-icon
+{
+background-position:left -2045px
+}
+#dropbox-browser li.ui-db-style.s_wrench_blue > a > ins.jstree-icon
+{
+background-position:left -6181px
+}
+#dropbox-browser li.ui-db-style.s_asterisk_blue > a > ins.jstree-icon
+{
+background-position:left -519px;width:16px;height:15px
+}
+#dropbox-browser li.ui-db-style.s_folder_delete > a > ins.jstree-icon
+{
+background-position:left -2130px
+}
+#dropbox-browser li.ui-db-style.s_package_delete > a > ins.jstree-icon
+{
+background-position:left -3477px
+}
+#dropbox-browser li.ui-db-style.s_filter_down > a > ins.jstree-icon
+{
+background-position:left -1976px
+}
+#dropbox-browser li.ui-db-style.s_page_white_dvd_blue > a > ins.jstree-icon
+{
+background-position:left -3970px
+}
+#dropbox-browser li.ui-db-style.s_user_comment_blue > a > ins.jstree-icon
+{
+background-position:left -5739px
+}
+#dropbox-browser li.ui-db-style.s_share_arrow > a > ins.jstree-icon
+{
+background-position:left -5065px;width:15px;height:15px
+}
+#dropbox-browser li.ui-db-style.s_folder_delete_blue > a > ins.jstree-icon
+{
+background-position:left -2147px
+}
+#dropbox-browser li.ui-db-style.s_events_bubble_right > a > ins.jstree-icon
+{
+background-position:left -1887px;width:2px;height:14px
+}
+#dropbox-browser li.ui-db-style.s_group_blue > a > ins.jstree-icon
+{
+background-position:left -2741px
+}
+#dropbox-browser li.ui-db-style.s_x_8 > a > ins.jstree-icon
+{
+background-position:left -6207px
+}
+#dropbox-browser li.ui-db-style.s_sound > a > ins.jstree-icon
+{
+background-position:left -5159px
+}
+#dropbox-browser li.ui-db-style.s_folder_star_blue > a > ins.jstree-icon
+{
+background-position:left -2385px
+}
+#dropbox-browser li.ui-db-style.s_download_arrow > a > ins.jstree-icon
+{
+background-position:left -1486px
+}
+#dropbox-browser li.ui-db-style.s_email_open > a > ins.jstree-icon
+{
+background-position:left -1787px
+}
+#dropbox-browser li.ui-db-style.s_page_white_add > a > ins.jstree-icon
+{
+background-position:left -3698px
+}
+#dropbox-browser li.ui-db-style.s_computer_edit > a > ins.jstree-icon
+{
+background-position:left -1265px
+}
+#dropbox-browser li.ui-db-style.s_help_blue > a > ins.jstree-icon
+{
+background-position:left -2809px
+}
+#dropbox-browser li.ui-db-style.s_folder_go_blue > a > ins.jstree-icon
+{
+background-position:left -2215px
+}
+#dropbox-browser li.ui-db-style.s_error > a > ins.jstree-icon
+{
+background-position:left -1855px
+}
+#dropbox-browser li.ui-db-style.s_newspaper > a > ins.jstree-icon
+{
+background-position:left -3392px
+}
+#dropbox-browser li.ui-db-style.s_arrow_out > a > ins.jstree-icon
+{
+background-position:left -357px
+}
+#dropbox-browser li.ui-db-style.s_page_white_magnify_blue > a > ins.jstree-icon
+{
+background-position:left -4225px
+}
+#dropbox-browser li.ui-db-style.s_page_white_go_blue > a > ins.jstree-icon
+{
+background-position:left -4191px
+}
+#dropbox-browser li.ui-db-style.s_telephone > a > ins.jstree-icon
+{
+background-position:left -5373px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_share_20 > a > ins.jstree-icon
+{
+background-position:left -2538px;width:20px;height:20px
+}
+#dropbox-browser li.ui-db-style.s_folder_wrench > a > ins.jstree-icon
+{
+background-position:left -2559px
+}
+#dropbox-browser li.ui-db-style.s_sort-downtick-on > a > ins.jstree-icon
+{
+background-position:left -5126px;width:11px;height:10px
+}
+#dropbox-browser li.ui-db-style.s_cross > a > ins.jstree-icon
+{
+background-position:left -1367px
+}
+#dropbox-browser li.ui-db-style.s_photo_blue > a > ins.jstree-icon
+{
+background-position:left -4718px
+}
+#dropbox-browser li.ui-db-style.s_dropbox_blue > a > ins.jstree-icon
+{
+background-position:left -1617px
+}
+#dropbox-browser li.ui-db-style.s_package_add > a > ins.jstree-icon
+{
+background-position:left -3426px
+}
+#dropbox-browser li.ui-db-style.s_application_edit_blue > a > ins.jstree-icon
+{
+background-position:left -238px
+}
+#dropbox-browser li.ui-db-style.s_x_green > a > ins.jstree-icon
+{
+background-position:left -6224px;width:8px;height:8px
+}
+#dropbox-browser li.ui-db-style.s_magnifier_zoom_in > a > ins.jstree-icon
+{
+background-position:left -3273px
+}
+#dropbox-browser li.ui-db-style.s_user > a > ins.jstree-icon
+{
+background-position:left -5671px
+}
+#dropbox-browser li.ui-db-style.s_arrow_turn_up > a > ins.jstree-icon
+{
+background-position:left -476px
+}
+#dropbox-browser li.ui-db-style.s_star_blue_half > a > ins.jstree-icon
+{
+background-position:left -5210px;width:11px;height:11px
+}
+#dropbox-browser li.ui-db-style.s_show_del > a > ins.jstree-icon
+{
+background-position:left -5081px
+}
+#dropbox-browser li.ui-db-style.s_folder_edit_blue > a > ins.jstree-icon
+{
+background-position:left -2181px
+}
+#dropbox-browser li.ui-db-style.s_cancel_blue > a > ins.jstree-icon
+{
+background-position:left -909px
+}
+#dropbox-browser li.ui-db-style.s_magnifier > a > ins.jstree-icon
+{
+background-position:left -3256px
+}
+#dropbox-browser li.ui-db-style.s_money > a > ins.jstree-icon
+{
+background-position:left -3341px
+}
+#dropbox-browser li.ui-db-style.s_page_white_cplusplus > a > ins.jstree-icon
+{
+background-position:left -3868px
+}
+#dropbox-browser li.ui-db-style.s_user_delete_blue > a > ins.jstree-icon
+{
+background-position:left -5773px
+}
+#dropbox-browser li.ui-db-style.s_world > a > ins.jstree-icon
+{
+background-position:left -6079px
+}
+#dropbox-browser li.ui-db-style.s_arrowright > a > ins.jstree-icon
+{
+background-position:left -506px;width:12px;height:12px
+}
+#dropbox-browser li.ui-db-style.s_time_back_blue > a > ins.jstree-icon
+{
+background-position:left -5467px
+}
+#dropbox-browser li.ui-db-style.s_add > a > ins.jstree-icon
+{
+background-position:left -17px
+}
+#dropbox-browser li.ui-db-style.s_user_delete > a > ins.jstree-icon
+{
+background-position:left -5756px
+}
+#dropbox-browser li.ui-db-style.s_computer_delete > a > ins.jstree-icon
+{
+background-position:left -1248px
+}
+#dropbox-browser li.ui-db-style.s_pill > a > ins.jstree-icon
+{
+background-position:left -4854px
+}
+#dropbox-browser li.ui-db-style.s_add_blue > a > ins.jstree-icon
+{
+background-position:left -34px
+}
+#dropbox-browser li.ui-db-style.s_folder_public_blue > a > ins.jstree-icon
+{
+background-position:left -2351px
+}
+#dropbox-browser li.ui-db-style.s_ipad_small > a > ins.jstree-icon
+{
+background-position:left -2945px
+}
+#dropbox-browser li.ui-db-style.s_arrow_out_black > a > ins.jstree-icon
+{
+background-position:left -374px
+}
+#dropbox-browser li.ui-db-style.s_tick > a > ins.jstree-icon
+{
+background-position:left -5416px
+}
+#dropbox-browser li.ui-db-style.s_show_del_blue > a > ins.jstree-icon
+{
+background-position:left -5098px
+}
+#dropbox-browser li.ui-db-style.s_download_arrow_blue > a > ins.jstree-icon
+{
+background-position:left -1503px
+}
+#dropbox-browser li.ui-db-style.s_control_play_blue > a > ins.jstree-icon
+{
+background-position:left -1333px
+}
+#dropbox-browser li.ui-db-style.s_gift > a > ins.jstree-icon
+{
+background-position:left -2593px
+}
+#dropbox-browser li.ui-db-style.s_server > a > ins.jstree-icon
+{
+background-position:left -5048px
+}
+#dropbox-browser li.ui-db-style.s_blackberry > a > ins.jstree-icon
+{
+background-position:left -620px
+}
+#dropbox-browser li.ui-db-style.s_cake_blue > a > ins.jstree-icon
+{
+background-position:left -824px
+}
+#dropbox-browser li.ui-db-style.s_twitter > a > ins.jstree-icon
+{
+background-position:left -5637px
+}
+#dropbox-browser li.ui-db-style.s_packrat_leave > a > ins.jstree-icon
+{
+background-position:left -3579px;width:32px;height:16px
+}
+#dropbox-browser li.ui-db-style.s_page_white_edit > a > ins.jstree-icon
+{
+background-position:left -3987px
+}
+#dropbox-browser li.ui-db-style.s_package_go_blue > a > ins.jstree-icon
+{
+background-position:left -3545px
+}
+#dropbox-browser li.ui-db-style.s_home > a > ins.jstree-icon
+{
+background-position:left -2860px
+}
+#dropbox-browser li.ui-db-style.s_page_white_acrobat > a > ins.jstree-icon
+{
+background-position:left -3630px
+}
+#dropbox-browser li.ui-db-style.s_page_white_php > a > ins.jstree-icon
+{
+background-position:left -4276px
+}
+#dropbox-browser li.ui-db-style.s_page_white_c_blue > a > ins.jstree-icon
+{
+background-position:left -3749px
+}
+#dropbox-browser li.ui-db-style.s_arrow_blue > a > ins.jstree-icon
+{
+background-position:left -323px
+}
+#dropbox-browser li.ui-db-style.s_comments > a > ins.jstree-icon
+{
+background-position:left -1180px
+}
+#dropbox-browser li.ui-db-style.s_computer_go_blue > a > ins.jstree-icon
+{
+background-position:left -1299px
+}
+#dropbox-browser li.ui-db-style.s_user_go > a > ins.jstree-icon
+{
+background-position:left -5824px
+}
+#dropbox-browser li.ui-db-style.s_iphone_small > a > ins.jstree-icon
+{
+background-position:left -2984px
+}
+#dropbox-browser li.ui-db-style.s_door_in_blue > a > ins.jstree-icon
+{
+background-position:left -1469px
+}
+#dropbox-browser li.ui-db-style.s_time_delete_blue > a > ins.jstree-icon
+{
+background-position:left -5518px
+}
+#dropbox-browser li.ui-db-style.s_packrat > a > ins.jstree-icon
+{
+background-position:left -3562px
+}
+#dropbox-browser li.ui-db-style.s_login_arrow > a > ins.jstree-icon
+{
+background-position:left -3205px
+}
+#dropbox-browser li.ui-db-style.s_package > a > ins.jstree-icon
+{
+background-position:left -3409px
+}
+#dropbox-browser li.ui-db-style.s_big-dropdown_blue > a > ins.jstree-icon
+{
+background-position:left -603px
+}
+#dropbox-browser li.ui-db-style.s_plus > a > ins.jstree-icon
+{
+background-position:left -4901px
+}
+#dropbox-browser li.ui-db-style.s_arrow_highlight > a > ins.jstree-icon
+{
+background-position:left -340px
+}
+#dropbox-browser li.ui-db-style.s_page_white_blue > a > ins.jstree-icon
+{
+background-position:left -3715px
+}
+#dropbox-browser li.ui-db-style.s_wand_blue > a > ins.jstree-icon
+{
+background-position:left -5960px
+}
+#dropbox-browser li.ui-db-style.s_folder_add_blue > a > ins.jstree-icon
+{
+background-position:left -2062px
+}
+#dropbox-browser li.ui-db-style.s_star_blue_off > a > ins.jstree-icon
+{
+background-position:left -5236px;width:11px;height:11px
+}
+#dropbox-browser li.ui-db-style.s_page_white_code > a > ins.jstree-icon
+{
+background-position:left -3766px
+}
+#dropbox-browser li.ui-db-style.s_gavel > a > ins.jstree-icon
+{
+background-position:left -2576px
+}
+#dropbox-browser li.ui-db-style.s_computer_add_blue > a > ins.jstree-icon
+{
+background-position:left -1231px
+}
+#dropbox-browser li.ui-db-style.s_page_white_copy_blue > a > ins.jstree-icon
+{
+background-position:left -3851px
+}
+#dropbox-browser li.ui-db-style.s_page_white_acrobat_blue > a > ins.jstree-icon
+{
+background-position:left -3647px
+}
+#dropbox-browser li.ui-db-style.s_time_blue > a > ins.jstree-icon
+{
+background-position:left -5484px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_delete_blue > a > ins.jstree-icon
+{
+background-position:left -2487px
+}
+#dropbox-browser li.ui-db-style.s_page_white_ruby > a > ins.jstree-icon
+{
+background-position:left -4412px
+}
+#dropbox-browser li.ui-db-style.s_arrow_refresh > a > ins.jstree-icon
+{
+background-position:left -391px
+}
+#dropbox-browser li.ui-db-style.s_rounded_tl > a > ins.jstree-icon
+{
+background-position:left -5019px;width:5px;height:5px
+}
+#dropbox-browser li.ui-db-style.s_basket_remove_blue > a > ins.jstree-icon
+{
+background-position:left -552px
+}
+#dropbox-browser li.ui-db-style.s_paypal > a > ins.jstree-icon
+{
+background-position:left -4650px
+}
+#dropbox-browser li.ui-db-style.s_link > a > ins.jstree-icon
+{
+background-position:left -3052px
+}
+#dropbox-browser li.ui-db-style.s_rounded_tr > a > ins.jstree-icon
+{
+background-position:left -5025px;width:5px;height:5px
+}
+#dropbox-browser li.ui-db-style.s_bug > a > ins.jstree-icon
+{
+background-position:left -722px
+}
+#dropbox-browser li.ui-db-style.s_drive_add > a > ins.jstree-icon
+{
+background-position:left -1532px
+}
+#dropbox-browser li.ui-db-style.s_downtick-spacer > a > ins.jstree-icon
+{
+background-position:left -1520px;width:11px;height:11px
+}
+#dropbox-browser li.ui-db-style.s_purge_blue > a > ins.jstree-icon
+{
+background-position:left -4935px
+}
+#dropbox-browser li.ui-db-style.s_cake > a > ins.jstree-icon
+{
+background-position:left -807px
+}
+#dropbox-browser li.ui-db-style.s_events_bubble_left > a > ins.jstree-icon
+{
+background-position:left -1872px;width:2px;height:14px
+}
+#dropbox-browser li.ui-db-style.s_delete > a > ins.jstree-icon
+{
+background-position:left -1384px
+}
+#dropbox-browser li.ui-db-style.s_folder_user > a > ins.jstree-icon
+{
+background-position:left -2402px
+}
+#dropbox-browser li.ui-db-style.s_tshirt > a > ins.jstree-icon
+{
+background-position:left -5620px
+}
+#dropbox-browser li.ui-db-style.s_email_add > a > ins.jstree-icon
+{
+background-position:left -1685px
+}
+#dropbox-browser li.ui-db-style.s_check > a > ins.jstree-icon
+{
+background-position:left -960px;width:15px;height:15px
+}
+#dropbox-browser li.ui-db-style.s_film > a > ins.jstree-icon
+{
+background-position:left -1959px
+}
+#dropbox-browser li.ui-db-style.s_package_add_blue > a > ins.jstree-icon
+{
+background-position:left -3443px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_add > a > ins.jstree-icon
+{
+background-position:left -2419px
+}
+#dropbox-browser li.ui-db-style.s_book > a > ins.jstree-icon
+{
+background-position:left -654px
+}
+#dropbox-browser li.ui-db-style.s_door_in > a > ins.jstree-icon
+{
+background-position:left -1452px
+}
+#dropbox-browser li.ui-db-style.s_graynotch > a > ins.jstree-icon
+{
+background-position:left -2665px;width:3px;height:7px
+}
+#dropbox-browser li.ui-db-style.s_picture > a > ins.jstree-icon
+{
+background-position:left -4752px
+}
+#dropbox-browser li.ui-db-style.s_star > a > ins.jstree-icon
+{
+background-position:left -5176px
+}
+#dropbox-browser li.ui-db-style.s_chart_bar > a > ins.jstree-icon
+{
+background-position:left -926px
+}
+#dropbox-browser li.ui-db-style.s_yahoo > a > ins.jstree-icon
+{
+background-position:left -6233px
+}
+#dropbox-browser li.ui-db-style.s_dropbox > a > ins.jstree-icon
+{
+background-position:left -1583px
+}
+#dropbox-browser li.ui-db-style.s_folder_plugin > a > ins.jstree-icon
+{
+background-position:left -2317px
+}
+#dropbox-browser li.ui-db-style.s_user_gray > a > ins.jstree-icon
+{
+background-position:left -5858px
+}
+#dropbox-browser li.ui-db-style.s_photos > a > ins.jstree-icon
+{
+background-position:left -4735px
+}
+#dropbox-browser li.ui-db-style.s_page_white_film > a > ins.jstree-icon
+{
+background-position:left -4055px
+}
+#dropbox-browser li.ui-db-style.s_time > a > ins.jstree-icon
+{
+background-position:left -5433px
+}
+#dropbox-browser li.ui-db-style.s_user_edit_blue > a > ins.jstree-icon
+{
+background-position:left -5807px
+}
+#dropbox-browser li.ui-db-style.s_folder_user_gray_blue > a > ins.jstree-icon
+{
+background-position:left -2521px
+}
+#dropbox-browser li.ui-db-style.s_group_add > a > ins.jstree-icon
+{
+background-position:left -2707px
+}
+#dropbox-browser li.ui-db-style.s_ruby_small > a > ins.jstree-icon
+{
+background-position:left -5031px
+}
+
+#page_footer {
+	padding: 0.4em 28px;
+}
+
+#users .user {
+	display: inline-block;
+}
+
+#users .header {
+	margin-bottom: 0.5em;
+}
+
+#users .user img {
+	width: 2em;
+	height: 2em;
+	padding: 0 0.3em;
+	vertical-align: bottom;
+}
+
+#users .user span {
+	line-height: 2em;
+	vertical-align: middle;
+}
+
